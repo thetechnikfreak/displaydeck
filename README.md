@@ -1,16 +1,20 @@
 # DISPLAYDECK
-This Python Script allows you to use a Elgato Streamdeck as an Windows Display.
+
+This Python script allows you to use an Elgato Stream Deck as a Windows display.  
+
+<img src="image.jpg" width="30%">
 
 ## Features
-- Mirror the Main Display with like 5 FPS
-- Touch Support
+- Mirror the main display at ~5 FPS
+- Touch support
 
 ## Requirements
-- Elgato Streamdeck with 15 Keys
-- 1920x1080 Main Display
+- Elgato Stream Deck with 15 keys
+- 1920x1080 main display
 - Windows
 - Python 3.13
-- Python Packages: `pillow`, `streamdeck` und `pyautogui`
-- Download hidapi from [here](https://github.com/libusb/hidapi/releases) an put the dlls into `C:\Windows\System32\`
+- Python packages: `pillow`, `streamdeck`, `pyautogui`
+- Download [hidapi](https://github.com/libusb/hidapi/releases) and put the DLLs into `C:\Windows\System32\`
 
-Then Just Run it
+## Usage
+Simply run the script.
