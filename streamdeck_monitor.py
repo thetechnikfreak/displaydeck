@@ -45,11 +45,7 @@ class StreamDeckMonitor:
             
         self.deck.open()
         self.deck.reset()
-        
-        print(f"Opened '{self.deck.deck_type()}' device (serial: '{self.deck.get_serial_number()}')")
-        print(f"Key layout: {self.deck.key_layout()[0]}x{self.deck.key_layout()[1]} = {self.deck.key_count()} keys")
-        print(f"Key image format: {self.deck.key_image_format()}")
-        
+
         self.deck.set_brightness(80)
         
         screen = ImageGrab.grab()
@@ -69,8 +65,6 @@ class StreamDeckMonitor:
         key_count = self.deck.key_count()
         key_cols = self.deck.key_layout()[0]  
         key_rows = self.deck.key_layout()[1]  
-        print(f"Screen: {screen_width}x{screen_height}, Deck: {key_cols}x{key_rows} ({key_count} keys)")
-        
 
         display_width = screen_width
         display_height = screen_height
@@ -83,8 +77,7 @@ class StreamDeckMonitor:
         
         region_width = display_width / screen_cols
         region_height = display_height / screen_rows
-        
-        print(f"Screen grid: {screen_cols}x{screen_rows}, Region size per area: {region_width:.1f}x{region_height:.1f}")
+    
         
         self.screen_regions = []
         
@@ -129,10 +122,7 @@ class StreamDeckMonitor:
                 print(f"Key {key} -> Screen({screen_col},{screen_row}): ({x1},{y1})-({x2},{y2}) [{region_w}x{region_h}]")
             else:
                 self.screen_regions.append((0, 0, 100, 100))
-                print(f"Key {key}: Unknown mapping, using fallback")
             
-        print(f"Configured {len(self.screen_regions)} screen regions for {key_count} keys")
-        print("Korrekte Zuordnung: Bildschirm horizontal gestreckt auf 5x3 Raster")
 
     def click_screen_region(self, key_index: int):
         if not self.mouse_enabled:
@@ -250,14 +240,6 @@ class StreamDeckMonitor:
         self.update_thread.start()
         
         print("Stream Deck Monitor started!")
-        print("Configuration:")
-        print(f"- FPS: {self.refresh_rate}")
-        print(f"- Mouse Control: {'ENABLED' if self.mouse_enabled else 'DISABLED'}")
-        print()
-        print("Controls:")
-        print("- Key 0: Cycle refresh rate (0.5, 1.0, 2.0, 5.0, 10.0 FPS)")
-        print("- All other keys: Click in corresponding screen area")
-        print("- Layout: Screen horizontally stretched and divided into 5x3 grid")
         print()
         if self.mouse_enabled:
             print("MOUSE CONTROL: Pressing keys will move mouse and click in corresponding screen area")
@@ -293,12 +275,11 @@ class StreamDeckMonitor:
 
 
 def main():
-    print("Stream Deck Windows Monitor (Mouse Control Only)")
-    print("=" * 40)
     
     monitor = StreamDeckMonitor()
     monitor.run()
 
 
 if __name__ == "__main__":
+
     main()
